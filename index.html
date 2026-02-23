@@ -6,9 +6,9 @@
 <title>קבוצת עוז הדר — גיוס נהגים זרים</title>
 <style>
 :root{
-  --bg:#07091a;--bg2:#0d1128;--cyan:#00d4ff;--green:#00e5a0;
-  --gold:#ffb700;--purple:#a855f7;--red:#ff4f6b;
-  --muted:#8892a4;--dim:#4a5568;--white:#f0f4ff;
+  --bg:#f2f5ff;--bg2:#e8edf8;--cyan:#0095c8;--green:#00a87a;
+  --gold:#c98a00;--purple:#7c3aed;--red:#d63050;
+  --muted:#4a5580;--dim:#9aa3bf;--white:#1a1f3a;
   --bar-h:52px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -19,8 +19,8 @@ body{background:var(--bg);color:var(--white);
 
 /* ── STICKY TOP NAV ── */
 .topnav{position:sticky;top:0;z-index:100;
-  background:rgba(7,9,26,.92);backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(255,255,255,.08);
+  background:rgba(242,245,255,.95);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(26,31,58,.1);
   height:var(--bar-h);display:flex;align-items:stretch}
 .nav-tabs{display:flex;flex:1;overflow-x:auto;
   scrollbar-width:none;-ms-overflow-style:none}
@@ -31,9 +31,9 @@ body{background:var(--bg);color:var(--white);
   border-bottom:2px solid transparent;transition:all .2s;
   color:var(--dim);font-weight:600;font-size:12px;white-space:nowrap}
 .ntab span.n{font-size:10px;opacity:.5}
-.ntab:hover{color:var(--muted);background:rgba(255,255,255,.04)}
+.ntab:hover{color:var(--muted);background:rgba(0,0,0,.04)}
 .ntab.active{color:var(--cyan);border-bottom-color:var(--cyan);
-  background:rgba(0,212,255,.07)}
+  background:rgba(0,149,200,.08)}
 
 /* ── SECTIONS ── */
 section{min-height:100svh;display:flex;flex-direction:column;
@@ -43,38 +43,39 @@ section:nth-child(even){background:var(--bg2)}
 
 /* ── GLOW CARD ── */
 .gcard{
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.1);
+  background:rgba(255,255,255,.85);
+  border:1px solid rgba(26,31,58,.1);
   border-radius:16px;padding:24px;position:relative;
   transition:border-color .3s,box-shadow .3s;overflow:hidden;
+  box-shadow:0 2px 12px rgba(26,31,58,.07);
 }
 .gcard::before{
   content:'';position:absolute;inset:0;border-radius:16px;
   background:radial-gradient(600px circle at var(--mx,50%) var(--my,50%),
-    rgba(0,212,255,.08),transparent 50%);
+    rgba(0,149,200,.06),transparent 50%);
   opacity:0;transition:opacity .4s;pointer-events:none;
 }
 .gcard:hover::before{opacity:1}
-.gcard:hover{border-color:rgba(0,212,255,.3);
-  box-shadow:0 0 40px rgba(0,212,255,.08)}
+.gcard:hover{border-color:rgba(0,149,200,.35);
+  box-shadow:0 4px 28px rgba(0,149,200,.12)}
 
-.gcard-green::before{background:radial-gradient(600px circle at var(--mx,50%) var(--my,50%),rgba(0,229,160,.1),transparent 50%)}
-.gcard-green:hover{border-color:rgba(0,229,160,.35);box-shadow:0 0 40px rgba(0,229,160,.09)}
-.gcard-gold::before{background:radial-gradient(600px circle at var(--mx,50%) var(--my,50%),rgba(255,183,0,.1),transparent 50%)}
-.gcard-gold:hover{border-color:rgba(255,183,0,.35);box-shadow:0 0 40px rgba(255,183,0,.09)}
-.gcard-red::before{background:radial-gradient(600px circle at var(--mx,50%) var(--my,50%),rgba(255,79,107,.1),transparent 50%)}
-.gcard-red:hover{border-color:rgba(255,79,107,.35);box-shadow:0 0 40px rgba(255,79,107,.09)}
-.gcard-purple::before{background:radial-gradient(600px circle at var(--mx,50%) var(--my,50%),rgba(168,85,247,.1),transparent 50%)}
-.gcard-purple:hover{border-color:rgba(168,85,247,.35);box-shadow:0 0 40px rgba(168,85,247,.09)}
+.gcard-green::before{background:radial-gradient(600px circle at var(--mx,50%) var(--my,50%),rgba(0,168,122,.1),transparent 50%)}
+.gcard-green:hover{border-color:rgba(0,168,122,.4);box-shadow:0 4px 28px rgba(0,168,122,.12)}
+.gcard-gold::before{background:radial-gradient(600px circle at var(--mx,50%) var(--my,50%),rgba(201,138,0,.1),transparent 50%)}
+.gcard-gold:hover{border-color:rgba(201,138,0,.4);box-shadow:0 4px 28px rgba(201,138,0,.12)}
+.gcard-red::before{background:radial-gradient(600px circle at var(--mx,50%) var(--my,50%),rgba(214,48,80,.1),transparent 50%)}
+.gcard-red:hover{border-color:rgba(214,48,80,.35);box-shadow:0 4px 28px rgba(214,48,80,.12)}
+.gcard-purple::before{background:radial-gradient(600px circle at var(--mx,50%) var(--my,50%),rgba(124,58,237,.1),transparent 50%)}
+.gcard-purple:hover{border-color:rgba(124,58,237,.35);box-shadow:0 4px 28px rgba(124,58,237,.12)}
 
 /* ── BADGE ── */
 .badge{display:inline-flex;align-items:center;gap:5px;
   font-size:13px;padding:4px 13px;border-radius:20px;font-weight:700}
-.b-cyan{background:rgba(0,212,255,.15);color:var(--cyan);border:1px solid rgba(0,212,255,.3)}
-.b-green{background:rgba(0,229,160,.15);color:var(--green);border:1px solid rgba(0,229,160,.3)}
-.b-gold{background:rgba(255,183,0,.15);color:var(--gold);border:1px solid rgba(255,183,0,.3)}
-.b-purple{background:rgba(168,85,247,.15);color:var(--purple);border:1px solid rgba(168,85,247,.3)}
-.b-red{background:rgba(255,79,107,.15);color:var(--red);border:1px solid rgba(255,79,107,.3)}
+.b-cyan{background:rgba(0,149,200,.12);color:var(--cyan);border:1px solid rgba(0,149,200,.3)}
+.b-green{background:rgba(0,168,122,.12);color:var(--green);border:1px solid rgba(0,168,122,.3)}
+.b-gold{background:rgba(201,138,0,.12);color:var(--gold);border:1px solid rgba(201,138,0,.3)}
+.b-purple{background:rgba(124,58,237,.12);color:var(--purple);border:1px solid rgba(124,58,237,.3)}
+.b-red{background:rgba(214,48,80,.12);color:var(--red);border:1px solid rgba(214,48,80,.3)}
 
 /* ── GRID ── */
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
@@ -108,7 +109,7 @@ section:nth-child(even){background:var(--bg2)}
 /* ── COUNTER HERO ── */
 #hero-counter{font-size:clamp(80px,18vw,220px);font-weight:900;
   color:var(--red);line-height:1;
-  text-shadow:0 0 80px rgba(255,79,107,.4);
+  text-shadow:0 4px 30px rgba(214,48,80,.25);
   transition:text-shadow .3s}
 .hero-label{font-size:clamp(18px,2.5vw,30px);color:var(--muted);margin-top:12px}
 
@@ -119,7 +120,7 @@ section:nth-child(even){background:var(--bg2)}
 .tl-item{position:relative;margin-bottom:32px}
 .tl-dot{position:absolute;right:-23px;top:4px;width:14px;height:14px;
   border-radius:50%;border:2px solid var(--cyan);background:var(--bg);
-  box-shadow:0 0 12px rgba(0,212,255,.4)}
+  box-shadow:0 0 10px rgba(0,149,200,.3)}
 .tl-year{font-size:13px;font-weight:800;color:var(--cyan);margin-bottom:2px}
 .tl-text{font-size:16px;color:var(--muted);line-height:1.5}
 
@@ -129,7 +130,7 @@ section:nth-child(even){background:var(--bg2)}
 @media(max-width:500px){.lic-table{grid-template-columns:1fr}}
 .lic-col{border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:10px}
 .lic-head{font-size:15px;font-weight:800;margin-bottom:4px;padding-bottom:10px;
-  border-bottom:1px solid rgba(255,255,255,.08)}
+  border-bottom:1px solid rgba(26,31,58,.1)}
 .lic-row{display:flex;flex-direction:column;gap:2px}
 .lic-lbl{font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.8px}
 .lic-val{font-size:14px;color:var(--muted)}
@@ -181,7 +182,7 @@ section > *:not(.blob){position:relative;z-index:1}
 /* ── CARD ZOOM ── */
 #zoom-bg{
   display:none;position:fixed;inset:0;z-index:500;
-  background:rgba(7,9,26,.82);backdrop-filter:blur(4px);
+  background:rgba(26,31,58,.5);backdrop-filter:blur(4px);
   cursor:pointer;
 }
 #zoom-bg.on{display:block}
@@ -232,8 +233,8 @@ section > *:not(.blob){position:relative;z-index:1}
      S1 — HERO / COUNTER
 ═══════════════════════════════════════════════ -->
 <section id="s1">
-<div class="blob" style="width:700px;height:700px;background:var(--red);top:-200px;right:-100px;opacity:.05"></div>
-<div class="blob" style="width:500px;height:500px;background:var(--purple);bottom:-100px;left:-100px;opacity:.05"></div>
+<div class="blob" style="width:700px;height:700px;background:var(--red);top:-200px;right:-100px;opacity:.12"></div>
+<div class="blob" style="width:500px;height:500px;background:var(--purple);bottom:-100px;left:-100px;opacity:.12"></div>
 <div class="sec-inner" style="text-align:center">
   <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:36px" class="fade-in">
     <span class="badge b-cyan">&#x1F69B; נהגי משאיות</span>
@@ -248,12 +249,12 @@ section > *:not(.blob){position:relative;z-index:1}
     <div class="hero-label">נהגים מקצועיים חסרים</div>
     <!-- breakdown mini pills -->
     <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:18px">
-      <div style="background:rgba(255,79,107,.12);border:1px solid rgba(255,79,107,.35);border-radius:50px;padding:7px 20px;display:flex;align-items:center;gap:10px">
+      <div style="background:rgba(214,48,80,.08);border:1px solid rgba(214,48,80,.3);border-radius:50px;padding:7px 20px;display:flex;align-items:center;gap:10px">
         <span style="font-size:26px;font-weight:900;color:var(--red)">5,000</span>
         <span style="font-size:14px;color:var(--muted);text-align:right;line-height:1.4">🚌 נהגי<br>אוטובוס</span>
       </div>
       <div style="font-size:28px;color:var(--dim);line-height:1;padding-top:6px">+</div>
-      <div style="background:rgba(255,183,0,.12);border:1px solid rgba(255,183,0,.35);border-radius:50px;padding:7px 20px;display:flex;align-items:center;gap:10px">
+      <div style="background:rgba(201,138,0,.08);border:1px solid rgba(201,138,0,.3);border-radius:50px;padding:7px 20px;display:flex;align-items:center;gap:10px">
         <span style="font-size:26px;font-weight:900;color:var(--gold)">3,000</span>
         <span style="font-size:14px;color:var(--muted);text-align:right;line-height:1.4">🚛 נהגי<br>משאיות</span>
       </div>
@@ -278,14 +279,14 @@ section > *:not(.blob){position:relative;z-index:1}
      S2 — MARKET DATA
 ═══════════════════════════════════════════════ -->
 <section id="s2">
-<div class="blob" style="width:600px;height:600px;background:var(--gold);top:-100px;left:-100px;opacity:.05"></div>
+<div class="blob" style="width:600px;height:600px;background:var(--gold);top:-100px;left:-100px;opacity:.12"></div>
 <div class="sec-inner">
   <div class="sec-tag fade-in">02 / נתוני שוק</div>
   <div class="sec-title fade-in">המשבר <span style="color:var(--red)">במספרים</span></div>
   <div class="sec-sub fade-in" style="margin-bottom:20px">שני ענפים נפרדים — שני משברים שונים — פתרון אחד</div>
 
   <!-- === BUS BLOCK === -->
-  <div class="gcard fade-in" style="border-color:rgba(255,79,107,.3);background:rgba(255,79,107,.04);margin-bottom:22px;padding:28px">
+  <div class="gcard fade-in" style="border-color:rgba(214,48,80,.2);background:rgba(214,48,80,.03);margin-bottom:22px;padding:28px">
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap">
       <span style="font-size:28px">🚌</span>
       <div>
@@ -294,35 +295,35 @@ section > *:not(.blob){position:relative;z-index:1}
       </div>
     </div>
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px" class="bus-stats">
-      <div style="background:rgba(255,79,107,.1);border:1px solid rgba(255,79,107,.2);border-radius:12px;padding:14px;text-align:center">
+      <div style="background:rgba(214,48,80,.08);border:1px solid rgba(214,48,80,.18);border-radius:12px;padding:14px;text-align:center">
         <div style="font-size:11px;color:var(--dim);margin-bottom:4px;letter-spacing:1px;text-transform:uppercase">נהגים חסרים</div>
         <div style="font-size:38px;font-weight:900;color:var(--red);line-height:1" data-count="5000">0</div>
         <div style="font-size:12px;color:var(--muted);margin-top:4px">מקור: N12 / ועידת תחבורה 2026</div>
       </div>
-      <div style="background:rgba(255,183,0,.08);border:1px solid rgba(255,183,0,.2);border-radius:12px;padding:14px;text-align:center">
+      <div style="background:rgba(201,138,0,.07);border:1px solid rgba(201,138,0,.18);border-radius:12px;padding:14px;text-align:center">
         <div style="font-size:11px;color:var(--dim);margin-bottom:4px;letter-spacing:1px;text-transform:uppercase">נהגים קיימים</div>
         <div style="font-size:38px;font-weight:900;color:var(--gold);line-height:1" data-count="22000">0</div>
         <div style="font-size:12px;color:var(--muted);margin-top:4px">מאוגדים בהסתדרות</div>
       </div>
-      <div style="background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);border-radius:12px;padding:14px;text-align:center">
+      <div style="background:rgba(124,58,237,.07);border:1px solid rgba(124,58,237,.18);border-radius:12px;padding:14px;text-align:center">
         <div style="font-size:11px;color:var(--dim);margin-bottom:4px;letter-spacing:1px;text-transform:uppercase">נוטשים שנה 1</div>
         <div style="font-size:38px;font-weight:900;color:var(--purple);line-height:1" data-count="33">0</div>
         <div style="font-size:16px;font-weight:900;color:var(--purple)">%</div>
         <div style="font-size:12px;color:var(--muted)">Israel Hayom</div>
       </div>
-      <div style="background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);border-radius:12px;padding:14px;text-align:center">
+      <div style="background:rgba(0,149,200,.07);border:1px solid rgba(0,149,200,.18);border-radius:12px;padding:14px;text-align:center">
         <div style="font-size:11px;color:var(--dim);margin-bottom:4px;letter-spacing:1px;text-transform:uppercase">נסיעות תח"צ 2025</div>
         <div style="font-size:38px;font-weight:900;color:var(--cyan);line-height:1" data-count="900">0</div>
         <div style="font-size:12px;color:var(--muted);margin-top:4px">מיליון — שיא כל הזמנים</div>
       </div>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:20px">
-      <div class="row"><div class="ck" style="background:rgba(255,79,107,.15);color:var(--red)">!</div><div class="rt">מדי שנה <strong style="color:var(--white)">2,000 נהגים עוזבים</strong> + 1,200 פורשים</div></div>
-      <div class="row"><div class="ck" style="background:rgba(255,79,107,.15);color:var(--red)">!</div><div class="rt">שכר ממוצע <strong style="color:var(--white)">₪54/שעה</strong> — נמוך מהשוק</div></div>
-      <div class="row"><div class="ck" style="background:rgba(255,183,0,.15);color:var(--gold)">✓</div><div class="rt" style="color:var(--gold)">ועדת הכנסת <strong>אישרה פיילוט</strong> נהגים זרים</div></div>
+      <div class="row"><div class="ck" style="background:rgba(214,48,80,.1);color:var(--red)">!</div><div class="rt">מדי שנה <strong style="color:var(--white)">2,000 נהגים עוזבים</strong> + 1,200 פורשים</div></div>
+      <div class="row"><div class="ck" style="background:rgba(214,48,80,.1);color:var(--red)">!</div><div class="rt">שכר ממוצע <strong style="color:var(--white)">₪54/שעה</strong> — נמוך מהשוק</div></div>
+      <div class="row"><div class="ck" style="background:rgba(201,138,0,.1);color:var(--gold)">✓</div><div class="rt" style="color:var(--gold)">ועדת הכנסת <strong>אישרה פיילוט</strong> נהגים זרים</div></div>
     </div>
     <!-- Extra PT data -->
-    <div style="background:rgba(0,0,0,.25);border-radius:12px;padding:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;text-align:center;margin-bottom:4px">
+    <div style="background:rgba(0,0,0,.05);border-radius:12px;padding:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;text-align:center;margin-bottom:4px">
       <div>
         <div style="font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">נסיעות באוטובוס</div>
         <div style="font-size:26px;font-weight:900;color:var(--cyan)">85%</div>
@@ -339,13 +340,13 @@ section > *:not(.blob){position:relative;z-index:1}
         <div style="font-size:12px;color:var(--muted)">מתחת ליעד המינימלי</div>
       </div>
     </div>
-    <div style="background:rgba(255,79,107,.07);border:1px solid rgba(255,79,107,.15);border-radius:10px;padding:12px;font-size:13px;color:var(--muted);margin-top:10px;line-height:1.7">
+    <div style="background:rgba(214,48,80,.05);border:1px solid rgba(214,48,80,.12);border-radius:10px;padding:12px;font-size:13px;color:var(--muted);margin-top:10px;line-height:1.7">
       <strong style="color:var(--red)">🔥 קריסת מערך ההכשרה:</strong> &nbsp;בשנת 2025 נפתחו רק כמה קורסים עם 100 משתתפים בלבד — בשגרה נדרשים <strong style="color:var(--white)">6,000 חניכים בשנה</strong>. 50% מהנהגים שחוו אלימות מפתחים תגובת דחק חריפה &bull; ביטולי נסיעות זינקו ב-65% בשנה &bull; ועדת הכנסת ביטלה דיונים בזה אחר זה.
     </div>
   </div>
 
   <!-- === TRUCK BLOCK === -->
-  <div class="gcard fade-in" style="border-color:rgba(255,183,0,.3);background:rgba(255,183,0,.03);margin-bottom:22px;padding:28px">
+  <div class="gcard fade-in" style="border-color:rgba(201,138,0,.2);background:rgba(201,138,0,.03);margin-bottom:22px;padding:28px">
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap">
       <span style="font-size:28px">🚛</span>
       <div>
@@ -354,22 +355,22 @@ section > *:not(.blob){position:relative;z-index:1}
       </div>
     </div>
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px">
-      <div style="background:rgba(255,183,0,.1);border:1px solid rgba(255,183,0,.2);border-radius:12px;padding:14px;text-align:center">
+      <div style="background:rgba(201,138,0,.08);border:1px solid rgba(201,138,0,.18);border-radius:12px;padding:14px;text-align:center">
         <div style="font-size:11px;color:var(--dim);margin-bottom:4px;letter-spacing:1px;text-transform:uppercase">נהגים חסרים</div>
         <div style="font-size:38px;font-weight:900;color:var(--gold);line-height:1" data-count="3000">0</div>
         <div style="font-size:12px;color:var(--muted);margin-top:4px">מועצת המובילים 2025</div>
       </div>
-      <div style="background:rgba(255,79,107,.08);border:1px solid rgba(255,79,107,.2);border-radius:12px;padding:14px;text-align:center">
+      <div style="background:rgba(214,48,80,.06);border:1px solid rgba(214,48,80,.15);border-radius:12px;padding:14px;text-align:center">
         <div style="font-size:11px;color:var(--dim);margin-bottom:4px;letter-spacing:1px;text-transform:uppercase">ממתינים לבדיקות</div>
         <div style="font-size:38px;font-weight:900;color:var(--red);line-height:1" data-count="23000">0</div>
         <div style="font-size:12px;color:var(--muted);margin-top:4px">תקועים בין המשרדים</div>
       </div>
-      <div style="background:rgba(0,229,160,.08);border:1px solid rgba(0,229,160,.2);border-radius:12px;padding:14px;text-align:center">
+      <div style="background:rgba(0,168,122,.07);border:1px solid rgba(0,168,122,.18);border-radius:12px;padding:14px;text-align:center">
         <div style="font-size:11px;color:var(--dim);margin-bottom:4px;letter-spacing:1px;text-transform:uppercase">המתנה לבדיקה רפואית</div>
         <div style="font-size:38px;font-weight:900;color:var(--green);line-height:1">8</div>
         <div style="font-size:13px;color:var(--muted);margin-top:4px">חודשים ממוצע + 3 לתוצאות</div>
       </div>
-      <div style="background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);border-radius:12px;padding:14px;text-align:center">
+      <div style="background:rgba(124,58,237,.07);border:1px solid rgba(124,58,237,.18);border-radius:12px;padding:14px;text-align:center">
         <div style="font-size:11px;color:var(--dim);margin-bottom:4px;letter-spacing:1px;text-transform:uppercase">צי עצור</div>
         <div style="font-size:38px;font-weight:900;color:var(--purple);line-height:1">7</div>
         <div style="font-size:16px;font-weight:900;color:var(--purple)">%</div>
@@ -377,15 +378,15 @@ section > *:not(.blob){position:relative;z-index:1}
       </div>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
-      <div class="row"><div class="ck" style="background:rgba(255,183,0,.15);color:var(--gold)">!</div><div class="rt">ענף הבנייה משלם — <strong style="color:var(--white)">אין נהגים להובלת חומרים</strong></div></div>
-      <div class="row"><div class="ck" style="background:rgba(255,183,0,.15);color:var(--gold)">!</div><div class="rt">שרשרת האספקה נפגעת — <strong style="color:var(--white)">עיכובים בנמלים</strong></div></div>
-      <div class="row"><div class="ck" style="background:rgba(0,229,160,.15);color:var(--green)">✓</div><div class="rt" style="color:var(--green)">הממשלה מתכננת לייבא נהגי <strong>רכב כבד מחו"ל</strong></div></div>
+      <div class="row"><div class="ck" style="background:rgba(201,138,0,.1);color:var(--gold)">!</div><div class="rt">ענף הבנייה משלם — <strong style="color:var(--white)">אין נהגים להובלת חומרים</strong></div></div>
+      <div class="row"><div class="ck" style="background:rgba(201,138,0,.1);color:var(--gold)">!</div><div class="rt">שרשרת האספקה נפגעת — <strong style="color:var(--white)">עיכובים בנמלים</strong></div></div>
+      <div class="row"><div class="ck" style="background:rgba(0,168,122,.12);color:var(--green)">✓</div><div class="rt" style="color:var(--green)">הממשלה מתכננת לייבא נהגי <strong>רכב כבד מחו"ל</strong></div></div>
     </div>
   </div>
 
   <!-- === SUMMARY + OPPORTUNITY === -->
   <div class="g2">
-    <div class="gcard gcard-red fade-in" style="border-color:rgba(255,79,107,.2)">
+    <div class="gcard gcard-red fade-in" style="border-color:rgba(214,48,80,.2)">
       <div class="st" style="color:var(--red)">📊 סיכום המחסור הכולל</div>
       <div style="display:flex;justify-content:space-around;margin:16px 0;text-align:center">
         <div>
@@ -403,15 +404,15 @@ section > *:not(.blob){position:relative;z-index:1}
           <div style="font-size:34px;font-weight:900;color:var(--white)">8,000+</div>
         </div>
       </div>
-      <div class="row"><div class="ck" style="background:rgba(255,79,107,.15);color:var(--red)">!</div><div class="rt">הכשרה קרסה: 100 משתתפים לעומת 6,000 בשנה — נורמלי</div></div>
-      <div class="row"><div class="ck" style="background:rgba(255,79,107,.15);color:var(--red)">!</div><div class="rt">מרווד: 12 חודשי המתנה ממוצע — 60% נושרים</div></div>
+      <div class="row"><div class="ck" style="background:rgba(214,48,80,.1);color:var(--red)">!</div><div class="rt">הכשרה קרסה: 100 משתתפים לעומת 6,000 בשנה — נורמלי</div></div>
+      <div class="row"><div class="ck" style="background:rgba(214,48,80,.1);color:var(--red)">!</div><div class="rt">מרווד: 12 חודשי המתנה ממוצע — 60% נושרים</div></div>
     </div>
-    <div class="gcard gcard-green fade-in" style="border-color:rgba(0,229,160,.2)">
+    <div class="gcard gcard-green fade-in" style="border-color:rgba(0,168,122,.2)">
       <div class="st" style="color:var(--green)">🪟 חלון ההזדמנות</div>
-      <div class="row"><div class="ck" style="background:rgba(0,229,160,.15);color:var(--green)">→</div><div class="rt">מדיניות ממשלתית חדשה — פתיחה לנהגים זרים לראשונה</div></div>
-      <div class="row"><div class="ck" style="background:rgba(0,229,160,.15);color:var(--green)">→</div><div class="rt">מטרו תל אביב — ביקוש לאלפי נהגים לשנים הקרובות</div></div>
-      <div class="row"><div class="ck" style="background:rgba(0,229,160,.15);color:var(--green)">✓</div><div class="rt" style="color:var(--green);font-weight:700">WAF — מוכנה ומאושרת לתת מענה מיידי</div></div>
-      <div style="margin-top:16px;background:rgba(0,229,160,.07);border:1px solid rgba(0,229,160,.2);border-radius:10px;padding:14px;text-align:center">
+      <div class="row"><div class="ck" style="background:rgba(0,168,122,.12);color:var(--green)">→</div><div class="rt">מדיניות ממשלתית חדשה — פתיחה לנהגים זרים לראשונה</div></div>
+      <div class="row"><div class="ck" style="background:rgba(0,168,122,.12);color:var(--green)">→</div><div class="rt">מטרו תל אביב — ביקוש לאלפי נהגים לשנים הקרובות</div></div>
+      <div class="row"><div class="ck" style="background:rgba(0,168,122,.12);color:var(--green)">✓</div><div class="rt" style="color:var(--green);font-weight:700">WAF — מוכנה ומאושרת לתת מענה מיידי</div></div>
+      <div style="margin-top:16px;background:rgba(0,168,122,.06);border:1px solid rgba(0,168,122,.18);border-radius:10px;padding:14px;text-align:center">
         <div style="font-size:13px;color:var(--dim);margin-bottom:4px">נהגים נדרשים למטרו בלבד</div>
         <div style="font-size:42px;font-weight:900;color:var(--green)">7,500+</div>
         <div style="font-size:14px;color:var(--muted)">עד להשלמה מלאה</div>
@@ -425,7 +426,7 @@ section > *:not(.blob){position:relative;z-index:1}
      S3 — METRO PROJECT / TIMELINE
 ═══════════════════════════════════════════════ -->
 <section id="s3">
-<div class="blob" style="width:600px;height:600px;background:var(--purple);top:-100px;right:-100px;opacity:.05"></div>
+<div class="blob" style="width:600px;height:600px;background:var(--purple);top:-100px;right:-100px;opacity:.12"></div>
 <div class="sec-inner">
   <div class="sec-tag fade-in">03 / פרויקט המטרו</div>
   <div class="sec-title fade-in">2,500 משאיות &times; 3 משמרות = <span style="color:var(--green)">7,500+ נהגים</span></div>
@@ -455,16 +456,16 @@ section > *:not(.blob){position:relative;z-index:1}
     <div class="col" style="display:flex;flex-direction:column;gap:14px">
       <div class="gcard gcard-gold fade-in">
         <div class="st" style="color:var(--gold)">🏗️ אתגרי הפרויקט</div>
-        <div class="row"><div class="ck" style="background:rgba(255,79,107,.15);color:var(--red)">✗</div><div class="rt">שוק ישראלי לא מסוגל לספק — אין נהגים מוסמכים</div></div>
-        <div class="row"><div class="ck" style="background:rgba(255,79,107,.15);color:var(--red)">✗</div><div class="rt">הכשרה ישראלית: 18–24 חודשים — מאוחר מדי</div></div>
-        <div class="row"><div class="ck" style="background:rgba(255,183,0,.15);color:var(--gold)">!</div><div class="rt">הפרויקט יימשך עד 2035+ — נדרש פתרון אמין לטווח ארוך</div></div>
+        <div class="row"><div class="ck" style="background:rgba(214,48,80,.1);color:var(--red)">✗</div><div class="rt">שוק ישראלי לא מסוגל לספק — אין נהגים מוסמכים</div></div>
+        <div class="row"><div class="ck" style="background:rgba(214,48,80,.1);color:var(--red)">✗</div><div class="rt">הכשרה ישראלית: 18–24 חודשים — מאוחר מדי</div></div>
+        <div class="row"><div class="ck" style="background:rgba(201,138,0,.1);color:var(--gold)">!</div><div class="rt">הפרויקט יימשך עד 2035+ — נדרש פתרון אמין לטווח ארוך</div></div>
       </div>
       <div class="gcard gcard-green fade-in">
         <div class="st" style="color:var(--green)">✅ הפתרון: WAF</div>
-        <div class="row"><div class="stn" style="background:rgba(0,229,160,.15);color:var(--green)">1</div><div class="rt">גיוס בינלאומי מואץ — רשת סוכנים במדינות המוצא</div></div>
-        <div class="row"><div class="stn" style="background:rgba(0,229,160,.15);color:var(--green)">2</div><div class="rt">הכשרה + תיאוריה בארץ המוצא — נהג מגיע מוכן</div></div>
-        <div class="row"><div class="stn" style="background:rgba(0,229,160,.15);color:var(--green)">3</div><div class="rt">ויזה על שם המעסיק — WAF מנהלת את הבירוקרטיה</div></div>
-        <div class="row"><div class="stn" style="background:rgba(0,229,160,.15);color:var(--green)">4</div><div class="rt">ניהול שוטף לאורך כל שנות הפרויקט</div></div>
+        <div class="row"><div class="stn" style="background:rgba(0,168,122,.12);color:var(--green)">1</div><div class="rt">גיוס בינלאומי מואץ — רשת סוכנים במדינות המוצא</div></div>
+        <div class="row"><div class="stn" style="background:rgba(0,168,122,.12);color:var(--green)">2</div><div class="rt">הכשרה + תיאוריה בארץ המוצא — נהג מגיע מוכן</div></div>
+        <div class="row"><div class="stn" style="background:rgba(0,168,122,.12);color:var(--green)">3</div><div class="rt">ויזה על שם המעסיק — WAF מנהלת את הבירוקרטיה</div></div>
+        <div class="row"><div class="stn" style="background:rgba(0,168,122,.12);color:var(--green)">4</div><div class="rt">ניהול שוטף לאורך כל שנות הפרויקט</div></div>
       </div>
     </div>
   </div>
@@ -475,7 +476,7 @@ section > *:not(.blob){position:relative;z-index:1}
      S4 — LICENSE COMPARISON
 ═══════════════════════════════════════════════ -->
 <section id="s4">
-<div class="blob" style="width:700px;height:700px;background:var(--cyan);bottom:-200px;left:-100px;opacity:.04"></div>
+<div class="blob" style="width:700px;height:700px;background:var(--cyan);bottom:-200px;left:-100px;opacity:.10"></div>
 <div class="sec-inner">
   <div class="sec-tag fade-in">04 / השוואת מסלולי רישוי</div>
   <div class="sec-title fade-in">מסלולי <span style="color:var(--cyan)">רישוי נהיגה</span> — ישראלי מול עובד זר</div>
@@ -484,7 +485,7 @@ section > *:not(.blob){position:relative;z-index:1}
   <div class="lic-table">
 
     <!-- עמודה 1: אזרח ישראלי -->
-    <div class="gcard gcard-purple fade-in lic-col" style="border-color:rgba(168,85,247,.25)">
+    <div class="gcard gcard-purple fade-in lic-col" style="border-color:rgba(124,58,237,.25)">
       <div class="lic-head" style="color:var(--purple)">🇮🇱 אזרח ישראלי<br><span style="font-size:12px;color:var(--dim);font-weight:400">מסלול רגיל</span></div>
       <div class="lic-row"><div class="lic-lbl">קטגוריות</div><div class="lic-val">B / C / D / C+E</div></div>
       <div class="lic-row"><div class="lic-lbl">הכשרה תיאורטית</div><div class="lic-val">ספר לימוד + שיעורים</div></div>
@@ -496,7 +497,7 @@ section > *:not(.blob){position:relative;z-index:1}
     </div>
 
     <!-- עמודה 2: עובד זר — רכב רגיל -->
-    <div class="gcard gcard-gold fade-in lic-col" style="border-color:rgba(255,183,0,.25)">
+    <div class="gcard gcard-gold fade-in lic-col" style="border-color:rgba(201,138,0,.25)">
       <div class="lic-head" style="color:var(--gold)">🌍 עובד זר — רישיון רגיל<br><span style="font-size:12px;color:var(--dim);font-weight:400">הסבה מרישיון זר</span></div>
       <div class="lic-row"><div class="lic-lbl">קטגוריה</div><div class="lic-val">B (רכב פרטי/קל)</div></div>
       <div class="lic-row"><div class="lic-lbl">בחינת תיאוריה</div><div class="lic-val">בישראל — עברית</div></div>
@@ -509,7 +510,7 @@ section > *:not(.blob){position:relative;z-index:1}
         <div class="lic-val">
           <a href="https://www.gov.il/he/service/apply_for_new_driver_drivers_license" target="_blank"
             style="color:var(--gold);font-size:12px;text-decoration:none;
-            border-bottom:1px solid rgba(255,183,0,.4);padding-bottom:1px">
+            border-bottom:1px solid rgba(201,138,0,.4);padding-bottom:1px">
             🔗 gov.il — הסבת רישיון
           </a>
         </div>
@@ -517,7 +518,7 @@ section > *:not(.blob){position:relative;z-index:1}
     </div>
 
     <!-- עמודה 3: עובד זר — משאית/אוטובוס -->
-    <div class="gcard gcard-red fade-in lic-col" style="border-color:rgba(255,79,107,.25)">
+    <div class="gcard gcard-red fade-in lic-col" style="border-color:rgba(214,48,80,.25)">
       <div class="lic-head" style="color:var(--red)">🚛🚌 עובד זר — משאית / אוטובוס<br><span style="font-size:12px;color:var(--dim);font-weight:400">טרם נקבעו קריטריונים</span></div>
       <div class="lic-row"><div class="lic-lbl">קטגוריות</div><div class="lic-val">C / D / C+E</div></div>
       <div class="lic-row"><div class="lic-lbl">מצב רגולטורי</div>
@@ -529,7 +530,7 @@ section > *:not(.blob){position:relative;z-index:1}
       <div class="lic-row"><div class="lic-lbl">ציר זמן</div>
         <div class="lic-val" style="color:var(--muted)">תלוי החלטה מחוקקת</div>
       </div>
-      <div style="margin-top:12px;background:rgba(255,79,107,.08);border:1px solid rgba(255,79,107,.2);border-radius:9px;padding:11px">
+      <div style="margin-top:12px;background:rgba(214,48,80,.06);border:1px solid rgba(214,48,80,.15);border-radius:9px;padding:11px">
         <div style="font-size:12px;color:var(--red);font-weight:700;margin-bottom:5px">📋 פעולות נוכחיות</div>
         <div style="font-size:13px;color:var(--muted);line-height:1.6">
           הארגונים הרשמיים פועלים לקביעת מסלול מהיר — נושא פתוח בוועדות הכנסת
@@ -539,7 +540,7 @@ section > *:not(.blob){position:relative;z-index:1}
     </div>
 
     <!-- עמודה 4: מה WAF מציעה -->
-    <div class="gcard gcard-green fade-in lic-col" style="border-color:rgba(0,229,160,.35);background:rgba(0,229,160,.06)">
+    <div class="gcard gcard-green fade-in lic-col" style="border-color:rgba(0,168,122,.35);background:rgba(0,168,122,.05)">
       <div class="lic-head" style="color:var(--green)">⭐ מה WAF מציעה<br><span style="font-size:12px;color:var(--dim);font-weight:400">מסלול ייחודי — הכל שם</span></div>
       <div class="lic-row"><div class="lic-lbl">מיון</div><div class="lic-val" style="color:var(--green)">בארץ המוצא — WAF</div></div>
       <div class="lic-row"><div class="lic-lbl">הכשרה מלאה</div><div class="lic-val" style="color:var(--green)">תיאוריה + מעשי — בארץ המוצא</div></div>
@@ -547,7 +548,7 @@ section > *:not(.blob){position:relative;z-index:1}
       <div class="lic-row"><div class="lic-lbl">בחינה מעשית</div><div class="lic-val" style="color:var(--green)">בארץ המוצא — תחת פיקוח</div></div>
       <div class="lic-row"><div class="lic-lbl">הגעה לישראל</div><div class="lic-val" style="color:var(--green);font-weight:700">נהג מוסמך — מוכן לעבודה</div></div>
       <div class="lic-row"><div class="lic-lbl">ביורוקרטיה</div><div class="lic-val" style="color:var(--green)">WAF מטפלת בכל</div></div>
-      <div style="margin-top:10px;background:rgba(0,229,160,.1);border:1px solid rgba(0,229,160,.25);border-radius:9px;padding:10px;text-align:center">
+      <div style="margin-top:10px;background:rgba(0,168,122,.08);border:1px solid rgba(0,168,122,.2);border-radius:9px;padding:10px;text-align:center">
         <div style="font-size:11px;color:var(--dim);margin-bottom:3px">שיעור הצלחה</div>
         <div style="font-size:30px;font-weight:900;color:var(--green)">95%</div>
         <div style="font-size:12px;color:var(--muted)">נהג מגיע מוכן</div>
@@ -559,23 +560,23 @@ section > *:not(.blob){position:relative;z-index:1}
 </section>
 
 <section id="s5">
-<div class="blob" style="width:600px;height:600px;background:var(--green);top:-100px;right:-100px;opacity:.04"></div>
+<div class="blob" style="width:600px;height:600px;background:var(--green);top:-100px;right:-100px;opacity:.10"></div>
 <div class="sec-inner">
   <div class="sec-tag fade-in">05 / למה WAF</div>
   <div class="sec-title fade-in">יתרון <span style="color:var(--green)">מובנה</span> — לא מתחילים מאפס</div>
   <div class="g2" style="margin-bottom:20px">
-    <div class="gcard fade-in" style="display:flex;flex-direction:column;gap:10px;border-color:rgba(0,212,255,.2)">
+    <div class="gcard fade-in" style="display:flex;flex-direction:column;gap:10px;border-color:rgba(0,149,200,.2)">
       <div class="st" style="color:var(--cyan)">🏭 תשתית קיימת</div>
-      <div class="row"><div class="ck" style="background:rgba(0,229,160,.15);color:var(--green)">✓</div><div class="rt">מערכות גיוס בינלאומיות — פעילות ומוכחות</div></div>
-      <div class="row"><div class="ck" style="background:rgba(0,229,160,.15);color:var(--green)">✓</div><div class="rt">ניסיון מוכח בהשמת עובדים זרים בכל ענפי המשק</div></div>
-      <div class="row"><div class="ck" style="background:rgba(0,229,160,.15);color:var(--green)">✓</div><div class="rt">מחלקה משפטית ייעודית — עמידה מלאה ברגולציה</div></div>
-      <div class="row"><div class="ck" style="background:rgba(0,229,160,.15);color:var(--green)">✓</div><div class="rt">היכרות מעמיקה עם הרגולציה — רשות האוכלוסין, משרד התחבורה</div></div>
+      <div class="row"><div class="ck" style="background:rgba(0,168,122,.12);color:var(--green)">✓</div><div class="rt">מערכות גיוס בינלאומיות — פעילות ומוכחות</div></div>
+      <div class="row"><div class="ck" style="background:rgba(0,168,122,.12);color:var(--green)">✓</div><div class="rt">ניסיון מוכח בהשמת עובדים זרים בכל ענפי המשק</div></div>
+      <div class="row"><div class="ck" style="background:rgba(0,168,122,.12);color:var(--green)">✓</div><div class="rt">מחלקה משפטית ייעודית — עמידה מלאה ברגולציה</div></div>
+      <div class="row"><div class="ck" style="background:rgba(0,168,122,.12);color:var(--green)">✓</div><div class="rt">היכרות מעמיקה עם הרגולציה — רשות האוכלוסין, משרד התחבורה</div></div>
     </div>
     <div class="gcard gcard-gold fade-in">
       <div class="st" style="color:var(--gold)">⚡ מהירות לשוק</div>
-      <div class="row"><div class="ck" style="background:rgba(255,183,0,.15);color:var(--gold)">→</div><div class="rt">3–5 חודשים בלבד: מיון ← נחיתה ← עבודה</div></div>
-      <div class="row"><div class="ck" style="background:rgba(255,183,0,.15);color:var(--gold)">→</div><div class="rt">פיילוט: <strong style="color:var(--white)">500 נהגים</strong> תוך 4 חודשים</div></div>
-      <div style="margin-top:16px;background:rgba(255,183,0,.07);border:1px solid rgba(255,183,0,.2);border-radius:10px;padding:14px">
+      <div class="row"><div class="ck" style="background:rgba(201,138,0,.1);color:var(--gold)">→</div><div class="rt">3–5 חודשים בלבד: מיון ← נחיתה ← עבודה</div></div>
+      <div class="row"><div class="ck" style="background:rgba(201,138,0,.1);color:var(--gold)">→</div><div class="rt">פיילוט: <strong style="color:var(--white)">500 נהגים</strong> תוך 4 חודשים</div></div>
+      <div style="margin-top:16px;background:rgba(201,138,0,.05);border:1px solid rgba(201,138,0,.18);border-radius:10px;padding:14px">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;text-align:center">
           <div><div style="font-size:32px;font-weight:900;color:var(--cyan)">35+</div><div style="font-size:13px;color:var(--muted)">שנות פעילות</div></div>
           <div><div style="font-size:32px;font-weight:900;color:var(--gold)">3,000+</div><div style="font-size:13px;color:var(--muted)">עובדים הוצבו</div></div>
@@ -587,20 +588,20 @@ section > *:not(.blob){position:relative;z-index:1}
   </div>
   <!-- Risk row -->
   <div class="g3 fade-in">
-    <div class="gcard gcard-red" style="border-color:rgba(255,79,107,.2)">
+    <div class="gcard gcard-red" style="border-color:rgba(214,48,80,.2)">
       <div class="st" style="color:var(--red);font-size:15px">⏰ עיכוב ויזה</div>
       <div style="font-size:12px;color:var(--dim);margin-bottom:8px">סבירות: בינונית</div>
-      <div class="row"><div class="ck" style="background:rgba(0,229,160,.15);color:var(--green)">✓</div><div class="rt" style="font-size:15px">מאגר מועמדים מאושרים — השלמה מהירה</div></div>
+      <div class="row"><div class="ck" style="background:rgba(0,168,122,.12);color:var(--green)">✓</div><div class="rt" style="font-size:15px">מאגר מועמדים מאושרים — השלמה מהירה</div></div>
     </div>
-    <div class="gcard gcard-gold" style="border-color:rgba(255,183,0,.2)">
+    <div class="gcard gcard-gold" style="border-color:rgba(201,138,0,.2)">
       <div class="st" style="color:var(--gold);font-size:15px">🚶 נשירת נהגים</div>
       <div style="font-size:12px;color:var(--dim);margin-bottom:8px">סבירות: נמוכה</div>
-      <div class="row"><div class="ck" style="background:rgba(0,229,160,.15);color:var(--green)">✓</div><div class="rt" style="font-size:15px">שיעור נשירה 5% בלבד לעומת 33% בשוק</div></div>
+      <div class="row"><div class="ck" style="background:rgba(0,168,122,.12);color:var(--green)">✓</div><div class="rt" style="font-size:15px">שיעור נשירה 5% בלבד לעומת 33% בשוק</div></div>
     </div>
-    <div class="gcard gcard-purple" style="border-color:rgba(168,85,247,.2)">
+    <div class="gcard gcard-purple" style="border-color:rgba(124,58,237,.2)">
       <div class="st" style="color:var(--purple);font-size:15px">📜 שינוי רגולטורי</div>
       <div style="font-size:12px;color:var(--dim);margin-bottom:8px">סבירות: נמוכה</div>
-      <div class="row"><div class="ck" style="background:rgba(0,229,160,.15);color:var(--green)">✓</div><div class="rt" style="font-size:15px">35+ שנות ניסיון — מכירים כל שינוי</div></div>
+      <div class="row"><div class="ck" style="background:rgba(0,168,122,.12);color:var(--green)">✓</div><div class="rt" style="font-size:15px">35+ שנות ניסיון — מכירים כל שינוי</div></div>
     </div>
   </div>
 </div>
@@ -610,7 +611,7 @@ section > *:not(.blob){position:relative;z-index:1}
      S6 — CONTACT
 ═══════════════════════════════════════════════ -->
 <section id="s6" style="min-height:80svh">
-<div class="blob" style="width:600px;height:600px;background:var(--cyan);top:-100px;right:-100px;opacity:.05"></div>
+<div class="blob" style="width:600px;height:600px;background:var(--cyan);top:-100px;right:-100px;opacity:.12"></div>
 <div class="sec-inner" style="text-align:center">
   <div class="sec-tag fade-in">06 / צור קשר</div>
   <div class="sec-title fade-in"><span style="color:var(--cyan)">WAF</span> — קבוצת עוז הדר</div>
@@ -622,7 +623,7 @@ section > *:not(.blob){position:relative;z-index:1}
     <span class="badge b-cyan">🏪 מסחר ושירותים</span>
   </div>
   <div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap;max-width:860px;margin:0 auto 30px">
-    <div class="gcard gcard-gold fade-in" style="flex:1;min-width:260px;max-width:380px;border-color:rgba(255,183,0,.3)">
+    <div class="gcard gcard-gold fade-in" style="flex:1;min-width:260px;max-width:380px;border-color:rgba(201,138,0,.2)">
       <div style="font-size:20px;font-weight:900;margin-bottom:4px">דוד בן ציון מזרחי</div>
       <div style="font-size:15px;color:var(--gold);margin-bottom:16px">בעלים ומנכ"ל · קבוצת עוז הדר</div>
       <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-start">
@@ -630,7 +631,7 @@ section > *:not(.blob){position:relative;z-index:1}
         <div><div style="font-size:12px;color:var(--dim)">אימייל</div><div id="de" style="font-size:15px;font-weight:700;color:var(--gold);direction:ltr"></div></div>
       </div>
     </div>
-    <div class="gcard fade-in" style="flex:1;min-width:260px;max-width:380px;border-color:rgba(0,212,255,.3);background:rgba(0,212,255,.05)">
+    <div class="gcard fade-in" style="flex:1;min-width:260px;max-width:380px;border-color:rgba(0,149,200,.3);background:rgba(0,149,200,.05)">
       <div style="font-size:20px;font-weight:900;margin-bottom:4px">&#x05D0;&#x05D9;&#x05EA;&#x05D9; &#x05E1;&#x05DE;&#x05D5;&#x05DC;&#x05D9;&#x05E0;&#x05E1;&#x05E7;&#x05D9;</div>
       <div style="font-size:15px;color:var(--cyan);margin-bottom:16px">&#x05E2;&#x05D5;&#x05E8;&#x05DA; &#x05D3;&#x05D9;&#x05DF; &middot; &#x05E7;&#x05D1;&#x05D5;&#x05E6;&#x05EA; &#x05E2;&#x05D5;&#x05D6; &#x05D4;&#x05D3;&#x05E8;</div>
       <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-start">
@@ -639,7 +640,7 @@ section > *:not(.blob){position:relative;z-index:1}
       </div>
     </div>
   </div>
-  <div class="fade-in" style="display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:10px 22px;font-size:15px;color:var(--muted)">
+  <div class="fade-in" style="display:inline-flex;align-items:center;gap:10px;background:rgba(0,0,0,.05);border:1px solid rgba(26,31,58,.1);border-radius:10px;padding:10px 22px;font-size:15px;color:var(--muted)">
     📍 25 רח' תרשיש, מתחם הרכבת – פארק תעשייה, קיסריה
   </div>
 </div>
