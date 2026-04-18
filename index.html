@@ -27,15 +27,88 @@ nav ul a:hover,nav.sc ul a:hover{color:var(--dark)}
 .nc{font-size:13px;font-weight:700;color:var(--dark);background:var(--white);padding:9px 22px;border-radius:100px;text-decoration:none;transition:opacity .2s}
 nav.sc .nc{background:var(--green);color:var(--white)}
 .nc:hover{opacity:.85}
-/* TRUCK LANE */
-.tlane{position:relative;overflow:hidden;height:72px;background:var(--dark)}
-.tlane::before{content:'';position:absolute;bottom:17px;left:0;right:0;height:3px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.11) 0 24px,transparent 24px 48px)}
-.tli{position:absolute;inset:0;display:flex;align-items:center;width:max-content;gap:0;animation:trmove 24s linear infinite}
-.tlane.rev .tli{animation:trmove2 24s linear infinite}
-@keyframes trmove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@keyframes trmove2{from{transform:translateX(-50%)}to{transform:translateX(0)}}
-.tsv{width:130px;height:52px;flex-shrink:0;margin:0 52px;opacity:.3;fill:var(--white);transition:opacity .3s}
-.tlane:hover .tsv{opacity:.5}
+/* ROAD ANIMATION */
+.road{
+  position:relative;overflow:hidden;
+  height:88px;background:var(--dark);
+  border-top:1px solid rgba(255,255,255,.04);
+  border-bottom:1px solid rgba(255,255,255,.04);
+}
+/* Asphalt texture */
+.road::before{
+  content:'';
+  position:absolute;inset:0;
+  background:
+    linear-gradient(180deg,
+      rgba(255,255,255,.02) 0%,
+      transparent 30%,
+      transparent 70%,
+      rgba(255,255,255,.02) 100%);
+}
+/* Edge lines */
+.road-edge-t,.road-edge-b{
+  position:absolute;left:0;right:0;height:2px;
+  background:rgba(255,255,255,.12);
+}
+.road-edge-t{top:14px}
+.road-edge-b{bottom:14px}
+/* Moving dashes — centre line */
+.road-dashes{
+  position:absolute;
+  top:50%;transform:translateY(-50%);
+  left:0;right:0;height:4px;
+  background:repeating-linear-gradient(
+    90deg,
+    rgba(255,255,255,.28) 0px,
+    rgba(255,255,255,.28) 40px,
+    transparent 40px,
+    transparent 80px
+  );
+  animation:dashMove 1.4s linear infinite;
+}
+/* Moving dashes — lane dividers */
+.road-lane1{
+  position:absolute;
+  top:calc(50% - 20px);
+  left:0;right:0;height:2px;
+  background:repeating-linear-gradient(
+    90deg,
+    rgba(255,255,255,.10) 0px,
+    rgba(255,255,255,.10) 24px,
+    transparent 24px,
+    transparent 56px
+  );
+  animation:dashMove 1.4s linear infinite;
+}
+.road-lane2{
+  position:absolute;
+  top:calc(50% + 20px);
+  left:0;right:0;height:2px;
+  background:repeating-linear-gradient(
+    90deg,
+    rgba(255,255,255,.10) 0px,
+    rgba(255,255,255,.10) 24px,
+    transparent 24px,
+    transparent 56px
+  );
+  animation:dashMove 1.4s linear infinite;
+}
+@keyframes dashMove{
+  from{background-position:0 0}
+  to{background-position:80px 0}
+}
+/* Speed lines — faint horizontal streaks */
+.road-streaks{
+  position:absolute;inset:0;
+  background:repeating-linear-gradient(
+    180deg,
+    transparent 0px,
+    transparent 10px,
+    rgba(255,255,255,.015) 10px,
+    rgba(255,255,255,.015) 11px
+  );
+  pointer-events:none;
+}
 /* REVEAL */
 .rv{opacity:0;transform:translateY(32px);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1)}
 .rv.vis{opacity:1;transform:none}
@@ -295,8 +368,7 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
   .ch{font-size:clamp(42px,11vw,64px)}
 
   /* ── Truck lanes ── */
-  .tlane{height:56px}
-  .tsv{width:90px;height:38px;margin:0 32px}
+  .road{height:64px}
 
   /* ── Ticker ── */
   .tn{font-size:16px}
@@ -364,6 +436,121 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
   .pname{font-size:15px}
   .addr{font-size:12px;padding:14px 16px}
 }
+
+/* COUNTRIES */
+.countries-section{background:var(--dark)}
+.tier-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:700;letter-spacing:.1em;
+  padding:5px 14px;border-radius:100px;
+  background:rgba(46,125,82,.2);color:var(--green);
+  border:1px solid rgba(46,125,82,.35);
+  margin-bottom:12px;
+}
+.tier-note{
+  font-size:14px;color:rgba(255,255,255,.45);
+  max-width:620px;line-height:1.65;margin-bottom:52px;
+}
+.tier-note a{color:var(--green);text-decoration:none;border-bottom:1px solid rgba(46,125,82,.3)}
+.countries-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
+  gap:12px;
+  margin-bottom:40px;
+}
+.country-card{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--r);
+  padding:18px 22px;
+  display:flex;align-items:center;gap:14px;
+  transition:background .25s,border-color .25s,transform .2s;
+  cursor:default;
+}
+.country-card:hover{
+  background:rgba(46,125,82,.1);
+  border-color:rgba(46,125,82,.4);
+  transform:translateY(-2px);
+}
+.country-flag{font-size:28px;line-height:1;flex-shrink:0}
+.country-info{}
+.country-name{font-size:15px;font-weight:700;color:var(--white);margin-bottom:2px}
+.country-tier{
+  font-size:10.5px;font-weight:700;letter-spacing:.08em;
+  padding:2px 8px;border-radius:100px;display:inline-block;
+}
+.tier1{background:rgba(46,125,82,.2);color:#4ade80}
+.tier2{background:rgba(59,130,246,.15);color:#93c5fd}
+.countries-more{
+  font-size:13px;color:rgba(255,255,255,.35);
+  margin-top:8px;
+  display:flex;align-items:center;gap:8px;
+}
+.countries-more::before{content:'';width:20px;height:1px;background:rgba(255,255,255,.2)}
+@media(max-width:760px){
+  .countries-grid{grid-template-columns:1fr 1fr}
+  .country-card{padding:14px 16px;gap:10px}
+  .country-flag{font-size:22px}
+  .country-name{font-size:13.5px}
+}
+
+.active-badge{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:10px;font-weight:700;
+  color:#4ade80;letter-spacing:.05em;
+}
+.active-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:#4ade80;flex-shrink:0;
+  box-shadow:0 0 0 0 rgba(74,222,128,.5);
+  animation:pulse-dot 1.6s ease-in-out infinite;
+}
+@keyframes pulse-dot{
+  0%{box-shadow:0 0 0 0 rgba(74,222,128,.55)}
+  60%{box-shadow:0 0 0 7px rgba(74,222,128,0)}
+  100%{box-shadow:0 0 0 0 rgba(74,222,128,0)}
+}
+
+/* ISRAEL MAP */
+.il-map-wrap{
+  margin-top:24px;
+  display:flex;align-items:center;gap:24px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--r);
+  padding:20px 24px;
+}
+.il-map-svg{
+  width:100px;flex-shrink:0;
+  overflow:visible;
+}
+.il-land{fill:rgba(46,125,82,.22);stroke:rgba(46,125,82,.55);stroke-width:1.5;stroke-linejoin:round}
+.il-wb{fill:none;stroke:rgba(255,255,255,.08);stroke-width:1;stroke-dasharray:3 3}
+.il-water{fill:rgba(59,130,246,.35);stroke:rgba(59,130,246,.5);stroke-width:.8}
+.city-dot{fill:rgba(255,255,255,.5)}
+.city-label{font-family:'Heebo',sans-serif;font-size:7px;fill:rgba(255,255,255,.35);direction:rtl}
+.pin-ring{fill:none;stroke:#4ade80;stroke-width:1.2}
+.r1{animation:ping1 2s ease-out infinite}
+.r2{animation:ping1 2s ease-out infinite .5s}
+@keyframes ping1{
+  0%{r:6px;opacity:.8}
+  100%{r:18px;opacity:0}
+}
+.pin-dot{fill:#4ade80;filter:drop-shadow(0 0 4px rgba(74,222,128,.7))}
+.pin-label-bg{fill:rgba(0,26,58,.85);stroke:rgba(46,125,82,.4);stroke-width:.8}
+.pin-label-text{
+  font-family:'Heebo',sans-serif;font-size:9px;font-weight:700;
+  fill:rgba(255,255,255,.85);direction:rtl;
+}
+.il-address{flex:1}
+.il-address-line{
+  font-size:13px;color:rgba(255,255,255,.5);line-height:1.9;
+}
+.il-address-line strong{color:rgba(255,255,255,.75);font-weight:700}
+@media(max-width:760px){
+  .il-map-wrap{flex-direction:column;align-items:flex-start;gap:16px}
+  .il-map-svg{width:76px}
+}
 </style>
 </head>
 <body>
@@ -374,6 +561,7 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
     <li><a href="#crisis">המשבר</a></li>
     <li><a href="#metro">המטרו</a></li>
     <li><a href="#process">התהליך</a></li>
+    <li><a href="#countries">מדינות מוצא</a></li>
     <li><a href="#why">למה WAF</a></li>
     <li><a href="#contact">צור קשר</a></li>
   </ul>
@@ -407,7 +595,14 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
 </section>
 
 <!-- TRUCK LANE TOP -->
-<div class="tlane" id="tlt"></div>
+<div class="road">
+  <div class="road-edge-t"></div>
+  <div class="road-edge-b"></div>
+  <div class="road-lane1"></div>
+  <div class="road-dashes"></div>
+  <div class="road-lane2"></div>
+  <div class="road-streaks"></div>
+</div>
 
 <!-- TICKER -->
 <div class="ticker"><div class="ti" id="tic"></div></div>
@@ -481,7 +676,7 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
       <div class="rv d1">
         <div class="or"><div class="od o"></div><div>ועדת הכנסת אישרה פיילוט — ייבוא נהגים זרים לראשונה</div></div>
         <div class="or"><div class="od o"></div><div>פרויקט המטרו — ביקוש ל-7,500+ נהגים עד 2035</div></div>
-        <div class="or"><div class="od o"></div><div>WAF מוכנה — מערכות גיוס פעילות ב-6 מדינות מוצא</div></div>
+        <div class="or"><div class="od o"></div><div>WAF מוכנה — מערכות גיוס פעילות ב-10+ מדינות Tier 1/2</div></div>
         <div class="or"><div class="od o"></div><div>3–5 חודשים בלבד: מיון ← הכשרה ← ויזה ← עבודה</div></div>
       </div>
     </div>
@@ -527,7 +722,7 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
         <div class="stop-year">2026</div>
         <div class="stop-title">פיילוט ראשון — 1,500 נהגים</div>
         <div class="stop-desc">אישור רגולטורי ראשוני. גיוס 1,500 נהגי משאיות ואוטובוסים. הסמכה תחת פיקוח משרד התחבורה. מיקוד במדינות עם שיעור אנגלית גבוה ורישיונות בין-לאומיים מוכרים.</div>
-        <div class="chips" style="margin-top:16px"><span class="chip">גאורגיה</span><span class="chip">אוזבקיסטן</span><span class="chip">הודו</span><span class="chip">מלאווי</span><span class="chip">גאנה</span><span class="chip">זמביה</span></div>
+        <div class="chips" style="margin-top:16px"><span class="chip">הודו</span><span class="chip">תאילנד</span><span class="chip">סרי לנקה</span><span class="chip">מלאווי</span><span class="chip">גאנה</span><span class="chip">זמביה</span></div>
       </div>
     </div>
 
@@ -570,6 +765,98 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
   </div>
 </section>
 
+<!-- COUNTRIES -->
+<section class="dark countries-section" id="countries">
+  <div class="stag rv" style="color:var(--green)"><span style="background:var(--green);display:inline-block;width:32px;height:3px;border-radius:2px"></span>מדינות מוצא</div>
+  <h2 class="sh rv d1">פרוסים בכל המדינות הרלוונטיות</h2>
+
+  <div class="rv d2">
+    <span class="tier-badge">✅ Tier 1 / Tier 2 — דוח מחלקת המדינה האמריקאי</span>
+  </div>
+  <p class="tier-note rv d3">
+    ישראל מייבאת עובדים ממדינות המסווגות <strong style="color:rgba(255,255,255,.7)">Tier 1</strong> או <strong style="color:rgba(255,255,255,.7)">Tier 2</strong> בדוח מחלקת המדינה האמריקאי בנושא סחר בבני אדם (TIP Report) — המבטיח סטנדרטים בינלאומיים להגנה על עובדים. כל מדינות הגיוס של WAF עומדות בדרישות אלו.
+  </p>
+
+  <div class="countries-grid">
+    <div class="country-card rv">
+      <div class="country-flag">🇮🇳</div>
+      <div class="country-info">
+        <div class="country-name">הודו</div>
+        <span class="country-tier tier1">Tier 1</span>
+      </div>
+    </div>
+    <div class="country-card rv d1">
+      <div class="country-flag">🇹🇭</div>
+      <div class="country-info">
+        <div class="country-name">תאילנד</div>
+        <span class="country-tier tier2">Tier 2</span>
+      </div>
+    </div>
+    <div class="country-card rv d2">
+      <div class="country-flag">🇱🇰</div>
+      <div class="country-info">
+        <div class="country-name">סרי לנקה</div>
+        <span class="country-tier tier2">Tier 2</span>
+      </div>
+    </div>
+    <div class="country-card rv d3">
+      <div class="country-flag">🇲🇼</div>
+      <div class="country-info">
+        <div class="country-name">מלאווי</div>
+        <span class="country-tier tier2">Tier 2</span>
+      </div>
+    </div>
+    <div class="country-card rv">
+      <div class="country-flag">🇺🇿</div>
+      <div class="country-info">
+        <div class="country-name">אוזבקיסטן</div>
+        <span class="country-tier tier2">Tier 2</span>
+      </div>
+    </div>
+    <div class="country-card rv d1" style="position:relative">
+      <div class="country-flag">🇬🇪</div>
+      <div class="country-info">
+        <div class="country-name">גאורגיה</div>
+        <div style="display:flex;align-items:center;gap:6px;margin-top:4px">
+          <span class="country-tier tier1">Tier 1</span>
+          <span class="active-badge"><span class="active-dot"></span>בעבודה</span>
+        </div>
+      </div>
+    </div>
+    <div class="country-card rv d2">
+      <div class="country-flag">🇬🇭</div>
+      <div class="country-info">
+        <div class="country-name">גאנה</div>
+        <span class="country-tier tier2">Tier 2</span>
+      </div>
+    </div>
+    <div class="country-card rv d3">
+      <div class="country-flag">🇿🇲</div>
+      <div class="country-info">
+        <div class="country-name">זמביה</div>
+        <span class="country-tier tier2">Tier 2</span>
+      </div>
+    </div>
+    <div class="country-card rv">
+      <div class="country-flag">🇳🇵</div>
+      <div class="country-info">
+        <div class="country-name">נפאל</div>
+        <span class="country-tier tier2">Tier 2</span>
+      </div>
+    </div>
+    <div class="country-card rv d1">
+      <div class="country-flag">🇵🇭</div>
+      <div class="country-info">
+        <div class="country-name">פיליפינים</div>
+        <span class="country-tier tier1">Tier 1</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="countries-more rv">ועוד מדינות Tier 2 נוספות בהתאם לצורך ולאישורים הרגולטוריים</div>
+</section>
+
 <!-- WHY WAF -->
 <section id="why">
   <div class="stag rv">למה WAF</div>
@@ -598,8 +885,8 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
     </div>
     <div class="ac rv d1">
       <div class="aico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
-      <div class="at">6 מדינות מוצא</div>
-      <div class="ad">גאורגיה, אוזבקיסטן, הודו, מלאווי, גאנה וזמביה — גיוס ישיר ומבוקר ללא גורמי ביניים.</div>
+      <div class="at">10+ מדינות מוצא</div>
+      <div class="ad">הודו, תאילנד, סרי לנקה, מלאווי, גאורגיה, ועוד — כולן Tier 1/2 לפי דוח מחלקת המדינה האמריקאי.</div>
     </div>
     <div class="ac rv d2">
       <div class="aico"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></div>
@@ -610,7 +897,14 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
 </section>
 
 <!-- TRUCK LANE BOTTOM -->
-<div class="tlane rev" id="tlb"></div>
+<div class="road">
+  <div class="road-edge-t"></div>
+  <div class="road-edge-b"></div>
+  <div class="road-lane1"></div>
+  <div class="road-dashes"></div>
+  <div class="road-lane2"></div>
+  <div class="road-streaks"></div>
+</div>
 
 <!-- CONTACT -->
 <section class="dark" id="contact">
@@ -636,9 +930,88 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
         <div class="pname">איתי סמולינסקי</div>
         <div class="prole">עורך דין · קבוצת עוז הדר</div>
         <div class="prow"><div class="pci">📞</div><a href="tel:+972537766655">053-776-6655</a></div>
-        <div class="prow"><div class="pci">✉️</div><a href="mailto:itai@ozhadar.co.il">itai@ozhadar.co.il</a></div>
+        <div class="prow"><div class="pci">✉️</div><a href="mailto:itai@sapco.co.il">itai@sapco.co.il</a></div>
       </div>
-      <div class="addr"><span style="font-size:16px">📍</span><div><strong style="color:rgba(255,255,255,.42)">קבוצת עוז הדר</strong><br>רחוב תרשיש 25, מתחם הרכבת — פארק תעשייה, קיסריה</div></div>
+      <!-- Israel map with Caesarea pin -->
+      <div class="il-map-wrap">
+        <!--
+          Israel SVG — accurate coordinates
+          Coordinate system:
+            x = (lon - 34.2) * 70.6        (lon range 34.2→35.9, svg width 120)
+            y = (33.4 - lat) * 82.1        (lat range 29.5→33.4, svg height 320)
+
+          Border traced clockwise from Rosh HaNikra (NW):
+          → east along Lebanon border
+          → SE along Golan/Syria border
+          → S along Jordan River & Dead Sea
+          → S through Arava to Eilat (bottom tip)
+          → NW along Egypt border to Rafah
+          → N up Gaza & Mediterranean coast
+          → back to Rosh HaNikra
+
+          Caesarea: 32.50N 34.90E → (49, 74)
+        -->
+        <svg class="il-map-svg" viewBox="0 0 130 330" xmlns="http://www.w3.org/2000/svg">
+
+          <!-- Main Israel border (clockwise) -->
+          <path class="il-land" d="
+            M64,25
+            L80,18 L92,12 L100,10
+            L115,11
+            L116,25 L115,41 L112,58
+            L102,58
+            L95,79
+            L97,134 L90,160
+            L70,239 L57,305
+            L54,317
+            L4,189
+            L21,168
+            L26,142 L31,131
+            L40,108
+            L47,88
+            L54,48
+            Z
+          "/>
+
+          <!-- West Bank outline (lighter) -->
+          <path class="il-wb" d="
+            M95,79 L97,100 L96,115 L94,128
+            L90,140 L88,155 L90,160
+            L70,239 L57,305
+          "/>
+
+          <!-- Sea of Galilee (Kinneret) -->
+          <ellipse class="il-water" cx="97" cy="52" rx="5" ry="8"/>
+
+          <!-- Dead Sea -->
+          <path class="il-water" d="M94,128 L98,130 L100,145 L97,155 L90,158 L88,145 L90,133 Z"/>
+
+          <!-- Caesarea pin: 32.50N 34.90E → x=49, y=74 -->
+          <g id="caesarea-pin">
+            <circle cx="49" cy="74" r="14" class="pin-ring r1"/>
+            <circle cx="49" cy="74" r="9"  class="pin-ring r2"/>
+            <circle cx="49" cy="74" r="5"  class="pin-dot"/>
+            <rect   x="56" y="66" width="58" height="18" rx="4" class="pin-label-bg"/>
+            <text   x="85" y="78" class="pin-label-text" text-anchor="middle">קיסריה</text>
+          </g>
+
+          <!-- City dots for reference -->
+          <circle cx="54" cy="48" r="2" class="city-dot" opacity=".5"/>
+          <text x="57" y="51" class="city-label">חיפה</text>
+          <circle cx="40" cy="108" r="2" class="city-dot" opacity=".5"/>
+          <text x="22" y="111" class="city-label">תל אביב</text>
+          <circle cx="54" cy="317" r="3" class="city-dot" opacity=".6"/>
+          <text x="58" y="320" class="city-label" style="fill:#4ade80">אילת</text>
+        </svg>
+
+        <!-- Address below map -->
+        <div class="il-address">
+          <div class="il-address-line"><strong>קבוצת עוז הדר</strong></div>
+          <div class="il-address-line">רחוב תרשיש 25</div>
+          <div class="il-address-line">מתחם הרכבת, פארק תעשייה</div>
+          <div class="il-address-line">קיסריה</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -649,29 +1022,7 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
 </footer>
 
 <script>
-// TRUCK SVG
-const TR = `<svg class="tsv" viewBox="0 0 130 52" xmlns="http://www.w3.org/2000/svg">
-  <rect x="78" y="14" width="40" height="28" rx="3"/>
-  <rect x="102" y="17" width="11" height="11" rx="1" fill="#001A3A" opacity=".55"/>
-  <rect x="7" y="9" width="68" height="33" rx="2"/>
-  <rect x="5" y="38" width="112" height="5" rx="1"/>
-  <circle cx="23" cy="45" r="7"/><circle cx="23" cy="45" r="3" fill="#001A3A"/>
-  <circle cx="52" cy="45" r="7"/><circle cx="52" cy="45" r="3" fill="#001A3A"/>
-  <circle cx="98" cy="45" r="7"/><circle cx="98" cy="45" r="3" fill="#001A3A"/>
-  <rect x="114" y="6" width="4" height="13" rx="2"/>
-  <line x1="7" y1="18" x2="7" y2="38" stroke="#001A3A" stroke-width="1.5" opacity=".3"/>
-</svg>`;
-
-function buildLane(id) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  const inner = document.createElement('div');
-  inner.className = 'tli';
-  inner.innerHTML = Array(18).fill(TR).join('');
-  el.appendChild(inner);
-}
-buildLane('tlt');
-buildLane('tlb');
+// Road lanes are pure CSS — no JS needed
 
 // TICKER
 const tickData = [
